@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
 string ltrim(const string &);
@@ -15,27 +16,24 @@ string rtrim(const string &);
 
 int countingValleys(int steps, string path)
 {
-    int count_vally = 0;
-    int current_sealevel = 0;
-
+    int count = 0;
+    int level = 0;
+    
     for_each (path.cbegin(), path.cend(),
-        [&] (auto ch)
+        [&] (auto c)
         {
-            if (ch == 'U')
+            if (c == 'U')
             {
-                if( ++current_sealevel == 0)            
-                {
-                    count_vally++;
-                }
+                if (++level == 0) count++;
             }
             else
             {
-                current_sealevel--;
+                level--;
             }
         }
     );
-    
-    return count_vally;
+
+    return count;
 }
 
 int main()
